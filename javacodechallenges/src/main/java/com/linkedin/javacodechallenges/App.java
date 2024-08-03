@@ -5,12 +5,20 @@ import java.util.Scanner;
 public class App {
 
     public static boolean isPasswordComplex(String password) {
+        //solution based off of kathryn Hodge's solution
+        boolean status = false;
+        if (password.length() >= 6){
+            status = 
+                (password.matches(".*\\d.*")&&
+                password.matches(".*[a-z].*")&&
+                password.matches(".*[A-Z].*"));
+        }
+        return status;
         /*
         must have 6 characters
         must have one upper case character
         musthave one lowercase character
         must have one number
-        */
         boolean testOne, testTwo, testThree;
         boolean status = false;
         int n = password.length();
@@ -34,8 +42,8 @@ public class App {
                 ++i;
             }            
         }
-
         return status;
+        */
     }
 
     public static void main(String[] args) {
