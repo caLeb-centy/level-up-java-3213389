@@ -14,7 +14,18 @@ public class App {
             Map.entry('Z', 10));
 
     public static int wordScoreCalculator(String word) {
-        return 0;
+        //get letter 
+        //check if it exists in map
+            //if so used associated value
+            //if naur, return zero
+            int n = word.length();
+            String normalized = word.toUpperCase();
+            int score = 0;
+            for(int i = 0; i < n; ++i){   
+                score = score + letterPoints.getOrDefault(normalized.charAt(i), 0);
+            }
+
+        return score;
     }
 
     public static void main(String[] args) {
