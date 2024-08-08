@@ -1,5 +1,6 @@
 package com.linkedin.javacodechallenges;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -7,8 +8,35 @@ public class App {
     public static List<String> findStudentsWithIncompleteVolunteerEvents(
             List<String> students,
             Map<String, List<String>> attendeesMapping) {
-        // TODO: implement function
-        return List.of();
+        /*
+        * Algorithm
+        * List of incompleteStudents
+        * String name;
+        * for every student in list
+        *  if(searchMap(name) == null) //doesnt exist
+        *      incompleteStudents.add(name);
+        * 
+        * return incompleteStudents
+        */
+        //turn map into collection of Lists
+        Collection <List<String>> test = attendeesMapping.values();
+       
+        //turn collection of lists into one single list
+        List<String> namesOfStudents = test.stream()
+                .flatMap(List::stream)
+                .toList();
+
+        //filter list for names 
+        List<String> incompleteStudents = namesOfStudents
+                                            .stream()
+                                            .filter(name -> namesOfStudents
+                                            .contains(name) == false)
+                                            .toList();
+                                            
+                     
+                                            
+        return incompleteStudents.isEmpty() ? List.of() : incompleteStudents;
+     // return List.of();
     }
 
     public static void main(String[] args) {
