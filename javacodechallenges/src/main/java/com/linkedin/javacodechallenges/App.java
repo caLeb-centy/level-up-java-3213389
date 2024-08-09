@@ -1,6 +1,6 @@
 package com.linkedin.javacodechallenges;
 
-import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -18,24 +18,20 @@ public class App {
         * 
         * return incompleteStudents
         */
-        //turn map into collection of Lists
-        Collection <List<String>> test = attendeesMapping.values();
-       
+     
         //turn collection of lists into one single list
-        List<String> namesOfStudents = test.stream()
+        List<String> namesOfStudents = attendeesMapping.values().stream()
                 .flatMap(List::stream)
                 .toList();
 
         //filter list for names 
-        List<String> incompleteStudents = namesOfStudents
+        List<String> incompleteStudents = students
                                             .stream()
-                                            .filter(name -> namesOfStudents
-                                            .contains(name) == false)
-                                            .toList();
+                                            .filter(name -> Collections.frequency(namesOfStudents, 
+                                            name) < 2)
+                                            .toList();               
                                             
-                     
-                                            
-        return incompleteStudents.isEmpty() ? List.of() : incompleteStudents;
+      return incompleteStudents.isEmpty() ? List.of() : incompleteStudents;
      // return List.of();
     }
 
